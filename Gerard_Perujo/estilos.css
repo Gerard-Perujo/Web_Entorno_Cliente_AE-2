@@ -1,0 +1,37 @@
+.form{
+    margin: 0 auto;
+    width:50%;
+    color:  rgb(173, 244,163);
+}
+
+h1{
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+
+fieldset{
+    border-radius: 4%;
+    border-color: rgb(173, 244,163),244,163;
+    font-size: 16px;
+    padding: 20px;
+    
+}
+
+body{
+    background-image: url("img/restaurante_italiano.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.button{
+    text-align: center;
+}
+
+legend{
+    text-align: center;
+
+}

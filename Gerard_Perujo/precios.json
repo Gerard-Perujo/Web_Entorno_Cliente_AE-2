@@ -1,0 +1,44 @@
+{
+    "Precios":{
+        "Tamaños":[
+            {
+                "tipo": "Pequeña",
+                "precio": "5"
+            },
+            {
+                "tipo": "Mediana",
+                "precio": "10"
+            },
+            {
+                "tipo": "Grande",
+                "precio": "15"
+            },
+            {
+                "tipo": "Familiar",
+                "precio": "20"
+            }
+        ],
+        "Ingredientes":[
+            {
+                "nombre": "Nueces",
+                "precio": "4"
+            },
+            {
+                "nombre": "Cebolla",
+                "precio": "3"
+            },
+            {
+                "nombre": "Queso Cabra",
+                "precio": "5"
+            },
+            {
+                "nombre": "Bacon",
+                "precio": "2"
+            },
+            {
+                "nombre": "Calabacin",
+                "precio": "6"
+            }
+        ]
+    }
+}

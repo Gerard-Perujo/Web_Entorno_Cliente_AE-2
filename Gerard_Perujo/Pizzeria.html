@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entorno Cliente Actividad-2</title>
+    <link rel="stylesheet"  href="estilos.css">
+    <script type="text/javascript" src="pizzeria.js"></script>
+</head>
+<body>
+    <div class="form">
+        <h1>Pizzeria la Deliziosa</h1>
+        <h3>La pizza en la puerta de tu casa</h3>
+        <form method="get">
+            <fieldset>
+                <legend>Datos del cliente</legend>
+                <label for="Nombre">Nombre: </label>
+                <input type="text" name="Nombre"><br/><br/>
+                <label for="Apellidos">Apellidos: </label>
+                <input type="text" name="Apellidos"><br/><br/>
+                <label for="Direccion">Direccion: </label>
+                <input type="text" name="Direccion"><br/><br/>
+                <label for="Telefono">Telefono: </label>
+                <input type="number" name="Telefono"><br/><br/>
+                <label for="email">Email: </label>
+                <input type="email" name="email"><br/>
+            </fieldset>
+            <div id="tipos" class="tipos"></div>
+            <br/>
+            <div id="ingredientes"></div>
+            <br/>
+            <div class="button">
+                <input type="button" id="calcular" value="Procesar Pedido">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
