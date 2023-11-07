@@ -1,0 +1,39 @@
+{
+    "PIZZA":{
+        "TAMAÑOS":[
+            {
+            "TAMAÑO": "Pequeña",
+            "PRECIO" : "5"
+            },
+
+            {
+            "TAMAÑO": "Mediana",
+            "PRECIO" : "10"
+            },
+
+            {
+            "TAMAÑO": "Grande",
+            "PRECIO" : "15"
+            }
+        ],
+        "INGREDIENTES":[
+            {
+            "INGREDIENTE" : "Salchica bávara",
+            "PRECIO" : "1"
+            },
+            {
+            "INGREDIENTE" : "Carne picada",
+            "PRECIO" : "1"
+            },
+            {
+            "INGREDIENTE" : "Miel y mostaza",
+            "PRECIO" : "1"
+            },
+            {
+            "INGREDIENTE" : "Jamón serrano",
+            "PRECIO" : "1"
+            }
+        ]
+
+    }
+}

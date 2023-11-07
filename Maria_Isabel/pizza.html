@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido</title>
+    <link rel="stylesheet" type="text/css" href="pizza.css">
+    <script type="text/javascript" src="pizza.js"></script>
+
+
+</head>
+<body>
+    <h1>Pizzeria Essenza di Trastevere</h1>
+    <marquee><h2>🍕Su pedido pizzero🍕</h2></marquee>
+    <form method="get" id="miFormulario">
+        <fieldset>
+            <legend>Por favor, rellene los  siguientes datos personales:</legend>
+            <label for="nombre" class="datos">Nombre:</label>
+            <input id="nombre" type="text" name="nombre" placeholder="José López García"/>
+            </br>
+            <label for="direccion">Dirección:</label>
+            <input id="direccion" type="text" name="direccion" placeholder="Calle del Pez, 3"/>
+            </br>
+            <label for="telefono">Teléfono:</label>
+            <input id="telefono" type="tel" name="telefono" placeholder="699346100"/>  
+            </br>
+            <label for="email">Correo electrónico:</label>
+            <input id="email" type="email" name="email" placeholder="pizzeria@gmail.com"/>
+            </br>
+        </fieldset>
+        
+        </br>
+        <!--
+        <fieldset>
+            <legend>Diseñe su propia pizza:</legend>
+            <label for="size">Tamaño de la pizza:</label>
+            </br>
+            <input type="radio" name="size" value="5" id="small"/> Pequeña<br/>
+            <input type="radio" name="size" value="10" id="medium"/> Mediana<br/>
+            <input type="radio" name="size" value="15" id="large"/> Grande
+        
+            <p>*Precios: 5€ tamaño pequeño, 10€ tamaño mediano y 15€ tamaño grande.</p>
+            <p> **Masa y base de queso incluidas en el precio.</p>
+            </br>
+            <label for="ingredientes">Escoja los ingredientes:</label> 
+            </br>
+            <input type="checkbox" name="ingredientes" value="1" id="sausage"/>Salchicha bávara<br/>
+            <input type="checkbox" name="ingredientes" value="1" id="meat"/>Carne picada<br/>
+            <input type="checkbox" name="ingredientes" value="1" id="honey"/>Miel y mostaza<br/>
+            <input type="checkbox" name="ingredientes" value="1" id="ham"/>Jamón serrano
+            <p>*Cada ingrediente seleccionado cuesta 1€ extra.</p>
+        </fieldset> 
+        -->
+        </br>
+        <input class="button" type="button" value="¡Procesar pedido!" id="enviar"/>
+        
+    </form>    
+</body>
+</html>    
