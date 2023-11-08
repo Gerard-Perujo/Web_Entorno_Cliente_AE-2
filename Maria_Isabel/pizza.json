@@ -33,11 +33,7 @@
             {
             "INGREDIENTE" : "Jamón serrano",
             "PRECIO" : "1"
-            },
-            {
-                "INGREDIENTE" : "Jamón ",
-                "PRECIO" : "1"
-                }
+            }           
         ]
 
     }

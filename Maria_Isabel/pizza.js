@@ -56,35 +56,43 @@ window.addEventListener("load", function(){
         etiqueta1.appendChild(contenido1)
         //Al fieldset se le añade el label.
         fieldsetDinamico.appendChild(etiqueta1)
-        let br3 =document.createElement("br")
-        fieldsetDinamico.appendChild(br3)
+        let br1 =document.createElement("br")
+        fieldsetDinamico.appendChild(br1)
 
         //Se itera el array de los tamaños de las pizzas y se crean los radio button pertinentes en función de los datos del JSON.
         for (let tam of arrayTamaños){
+            //Se crea la etiqueta label para almacenar el texto
+            let eti = document.createElement("label")
+
             //Se crea la etiqueta input
             let inputi = document.createElement("input")
 
             //El type y el name es igual para todos los radio button.
             inputi.type="radio"
             inputi.name="size"
-            
-            //Como el value y el id varía entre ellos, aquí se realizan pasos adicionales:
-            //Se crea el atributo, a ese atributo se le asigna un valor que se encuentra en el JSON, y esto se le añade al input.
-            let valeur = document.createAttribute("value")
-            valeur.value=tam.PRECIO
-            inputi.setAttributeNode(valeur)
+            //tam es la variable que hace referencia al arrayTamaños. A su vez, esta variable de array contiene el objeto JSON
+            //que contiene la ruta PIZZA.TAMAÑOS, para, a partir de ahí, acceder al tamaño y precio correspondiente.
+            inputi.value = tam.PRECIO
+            inputi.id = tam.TAMAÑO
 
-            let identifiant = document.createAttribute("id")
-            identifiant.value=tam.TAMAÑO 
-            inputi.setAttributeNode(identifiant)
+            //Al label se le añade el input
+            eti.appendChild(inputi)
 
-            let br1=document.createElement("br");
+            //Una vez creada la estructura input, se crea y se añade el nodo texto al label de cada input.
+            let nombreti = document.createTextNode(tam.TAMAÑO)
+            //Al label se le añade el texto
+            eti.appendChild(nombreti)
 
-            //Se añaden los inputs y el br al fieldset.
-            fieldsetDinamico.appendChild(inputi)
-            fieldsetDinamico.appendChild(br1)
+            //Se crea salto de línea
+            let br2=document.createElement("br");
+
+            //Se añaden los label y el br al fieldset.
+            fieldsetDinamico.appendChild(eti)
+            fieldsetDinamico.appendChild(br2)
         }
 
+        let br3 =document.createElement("br")
+        fieldsetDinamico.appendChild(br3)
         //Se crea el label para los checkboxes, con su texto al que posteriormente se hace un appendChild.
         let etiqueta2 = document.createElement("label")
         //etiqueta2.for="size"
@@ -97,23 +105,34 @@ window.addEventListener("load", function(){
 
         for (let ing of arrayIngredientes){
             //Se sigue la misma lógica que en el caso anterior pero adaptado a checkbox.
+            //Se crea la etiqueta label para almacenar el texto
+            let etii = document.createElement("label")
+
+            //Se crea la etiqueta input
             let inputii = document.createElement("input")
  
+            //El type y el name es igual para todos los checkbox.
             inputii.type="checkbox"
-            inputii.name="ingredientes"        
+            inputii.name="ingredientes" 
+            //ing es la variable que hace referencia al arrayIngredientes. A su vez, esta variable de array contiene el objeto JSON
+            //que contiene la ruta PIZZA.INGREDIENTES, para, a partir de ahí, acceder al ingrediente y precio correspondiente.       
+            inputii.value = ing.PRECIO
+            inputii.id = ing.INGREDIENTE
 
-            let valeur2 = document.createAttribute("value")
-            valeur2.value=ing.PRECIO
-            inputii.setAttributeNode(valeur2)
+            //Al label se le añade el input
+            etii.appendChild(inputii)
 
-            let identifiant2 = document.createAttribute("id")
-            identifiant2.value=ing.TAMAÑO 
-            inputii.setAttributeNode(identifiant2)
+            //Una vez creada la estructura input, se crea y se añade el nodo texto al label de cada input.
+            let nombreti = document.createTextNode(ing.INGREDIENTE)
+            //Al label se le añade el texto
+            etii.appendChild(nombreti)
 
-            let br2=document.createElement("br");
+            //Se crea salto de línea
+            let br5=document.createElement("br");
 
-            fieldsetDinamico.appendChild(inputii)
-            fieldsetDinamico.appendChild(br2)
+            //Se añaden los label y el br al fieldset.
+            fieldsetDinamico.appendChild(etii)
+            fieldsetDinamico.appendChild(br5)
         }
 
         //Al fieldset se le añade la legend.
