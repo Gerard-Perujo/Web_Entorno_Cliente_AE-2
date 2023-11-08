@@ -2,8 +2,8 @@ window.addEventListener("load", function(){
     //--------------------------------------------------Requerimiento 1----------------------------------------------------------------
     
     //Se declaran las constantes  de la url y el json con los datos que serán llamadas en el xmlHttp.open.
-    const URL_DESTINO = "http://127.0.0.1:5500/Maria_Isabel/pizza.html"
-    //const URL_DESTINO = "http://localhost:5500/Web_Entorno_Cliente_AE-2/Maria_Isabel/"
+    //La url destino fina absoluta sería: http://127.0.0.1:5500/Maria_Isabel/pizza.json
+    const URL_DESTINO = "http://127.0.0.1:5500/Maria_Isabel/"
     const RECURSO = "pizza.json" 
 
     //Se crea la función de enviar la petición.
@@ -38,7 +38,7 @@ window.addEventListener("load", function(){
         let objetoJson=JSON.parse(jsonDoc)
         console.log(objetoJson)
 
-        //Se declara la variable de array que será usada en el for
+        //Se declara la variable de array que será usada en el for:
         let arrayTamaños = objetoJson.PIZZA.TAMAÑOS;
         let arrayIngredientes = objetoJson.PIZZA.INGREDIENTES;
 
@@ -56,10 +56,11 @@ window.addEventListener("load", function(){
         etiqueta1.appendChild(contenido1)
         //Al fieldset se le añade el label.
         fieldsetDinamico.appendChild(etiqueta1)
+        let br3 =document.createElement("br")
+        fieldsetDinamico.appendChild(br3)
 
         //Se itera el array de los tamaños de las pizzas y se crean los radio button pertinentes en función de los datos del JSON.
         for (let tam of arrayTamaños){
-            //El equivalente en html de lo que se quiere lograr: <input type="radio" name="size" value="5" id="small"/> Pequeña<br/>
             //Se crea la etiqueta input
             let inputi = document.createElement("input")
 
@@ -67,7 +68,8 @@ window.addEventListener("load", function(){
             inputi.type="radio"
             inputi.name="size"
             
-            //Como el value y el id varía entre ellos, aquí se realizan pasos adicionales.
+            //Como el value y el id varía entre ellos, aquí se realizan pasos adicionales:
+            //Se crea el atributo, a ese atributo se le asigna un valor que se encuentra en el JSON, y esto se le añade al input.
             let valeur = document.createAttribute("value")
             valeur.value=tam.PRECIO
             inputi.setAttributeNode(valeur)
@@ -90,10 +92,10 @@ window.addEventListener("load", function(){
         etiqueta2.appendChild(contenido2)
         //Al fieldset se le añade el label.
         fieldsetDinamico.appendChild(etiqueta2)
+        let br4 =document.createElement("br")
+        fieldsetDinamico.appendChild(br4)
 
         for (let ing of arrayIngredientes){
-            //El equivalente en html de lo que se quiere lograr: <input type="checkbox" name="ingredientes" value="1" id="sausage"/>Salchicha bávara<br/>
-
             //Se sigue la misma lógica que en el caso anterior pero adaptado a checkbox.
             let inputii = document.createElement("input")
  
@@ -186,7 +188,7 @@ window.addEventListener("load", function(){
             }
         }
         let resultatFinal = 0;
-        resultatFinal= resultatTaille + resultatIngredients
+        resultatFinal = resultatTaille + resultatIngredients;
     }
 
     /*Al botón de procesar pedido (cuyo id es "enviar") cuando se le hace click se llamará a la función total
