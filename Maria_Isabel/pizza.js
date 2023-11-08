@@ -1,82 +1,9 @@
 window.addEventListener("load", function(){
-    //--------------------------------------------------ACTIVIDAD 1---------------------------------------------------------------------
-    let inputNombre = document.getElementById("nombre");
-    let inputDireccion = document.getElementById("direccion");
-    let inputTelefono = document.getElementById("telefono");
-    let inputEmail = document.getElementById("email");
-
-    let clicando=document.getElementById("enviar");
-    clicando.addEventListener("click", validacion);
-
-    function validacion(){
-        if(inputNombre.value.trim()==""){
-            alert("[ERROR] El nombre es obligatorio");
-            return false;
-        }
-
-        if(inputDireccion.value.trim()==""){
-            alert("[ERROR] La dirección es obligatoria");
-            return false;
-        }
-
-        if(inputTelefono.value.trim()==""){
-            alert("[ERROR] El teléfono es obligatorio");
-            return false;
-        }
-
-        if(inputEmail.value.trim()==""){
-            alert("[ERROR] El correo electrónico es obligatorio");
-            return false;
-        }
-
-        let tamano=document.getElementsByName("size");
-        let seleccionado=false;
-        let total =0;
-
-            for(let i=0; i<tamano.length; i++){
-                if(tamano[i].checked){
-                    seleccionado=true;
-                    total += parseInt(tamano[i].value);
-                    break;
-                } 
-            }
-
-        if(!seleccionado){
-            alert("[ERROR] Debe escoger un tamaño de pizza");
-            return false;
-        }
-
-        let cajitaFeliz = document.getElementsByName("ingredientes");
-        let chosen = false;
-        let total2 =0;
-            
-            for (let i = 0; i < cajitaFeliz.length; i++) {
-                if (cajitaFeliz[i].checked) {
-                    total2 += parseInt(cajitaFeliz[i].value);
-                    chosen = true;    
-                    continue;
-                }
-            }
-
-            if (!chosen){ 
-                alert("[ERROR] Debe seleccionar al menos un ingrediente.");  
-                return false;
-            }
-
-        if (!(inputNombre.value.trim()=="") && !(inputDireccion.value.trim()=="") && !(inputTelefono.value.trim()=="")
-            && !(inputEmail.value.trim()=="") && (seleccionado=true) && (chosen=true)){
-                alert("🤌🏼¡Preparando su pedido!🤌🏼");
-                alert('El coste de su pedido es ' + (total+total2)+"💶");
-                return true; 
-            }    
-         
-    } 
+    //--------------------------------------------------Requerimiento 1----------------------------------------------------------------
     
-    //--------------------------------------------------ACTIVIDAD 2----------------------------------------------------------------
-
     //Se declaran las constantes  de la url y el json con los datos que serán llamadas en el xmlHttp.open.
     const URL_DESTINO = "http://127.0.0.1:5500/Maria_Isabel/pizza.html"
-    const RECURSO = "pizza.json"
+    const RECURSO = "pizza.json" 
 
     //Se crea la función de enviar la petición.
     function enviarPeticionAsincrona(){
@@ -107,35 +34,81 @@ window.addEventListener("load", function(){
     //Se crea la función para procesar la respuesta, que se llama en el segundo if  de la función 'onreadystatechange'.
     function procesarRespuesta(jsonDoc){
         //El texto se transforma a objeto JSON
+        let objetoJson=JSON.parse(jsonDoc)
 
-        let objetoJson=JSON.parse(jsondoc)
-
+        //Se declara la variable de array que será usada en el for
         let arrayTamaños = objetoJson.PIZZA.TAMAÑOS;
+        let arrayIngredientes = objetoJson.PIZZA.INGREDIENTES;
 
         //Ahora se crea la estructura del DOM dinámica
+        
         let fieldsetDinamico=document.createElement("fieldset");
         let leyenda=document.createElement("legend");
         let contenidoLeyenda=document.createTextNode("Diseñe su propia pizza:")
         leyenda.appendChild(contenidoLeyenda);
+        let etiqueta1 = document.createElement("label")
+        //etiqueta1.for="size"
+        let contenido1=document.createTextNode("Tamaño de la pizza:")
+        etiqueta1.appendChild(contenido1)
+        fieldsetDinamico.appendChild(etiqueta1)
 
         //Se itera el array de los tamaños de las pizzas y se crean los radio button pertinentes en función de los datos del JSON.
         for (let tam of arrayTamaños){
+            //El equivalente en html de lo que se quiere lograr: <input type="radio" name="size" value="5" id="small"/> Pequeña<br/>
+
+            let inputi = document.createElement("input")
+
+            inputi.type="radio"
+            inputi.name="size"
             
+            let valeur = document.createAttribute("value")
+            valeur.value=tam.PRECIO
+            inputi.setAttributeNode(valeur)
+
+            let identifiant = document.createAttribute("id")
+            identifiant.value=tam.TAMAÑO 
+            inputi.setAttributeNode(identifiant)
+
+            let br1=document.createElement("br");
+
+            fieldsetDinamico.appendChild(inputi)
+            fieldsetDinamico.appendChild(br1)
         }
 
+        let etiqueta2 = document.createElement("label")
+        //etiqueta2.for="size"
+        let contenido2=document.createTextNode("Escoja los ingredientes:")
+        etiqueta2.appendChild(contenido2)
+        fieldsetDinamico.appendChild(etiqueta2)
 
+        for (let ing of arrayIngredientes){
+            //El equivalente en html de lo que se quiere lograr: <input type="checkbox" name="ingredientes" value="1" id="sausage"/>Salchicha bávara<br/>
 
+            let inputii = document.createElement("input")
+ 
+            inputii.type="checkbox"
+            inputii.name="ingredientes"        
 
+            let valeur2 = document.createAttribute("value")
+            valeur2.value=ing.PRECIO
+            inputii.setAttributeNode(valeur2)
 
+            let identifiant2 = document.createAttribute("id")
+            identifiant2.value=ing.TAMAÑO 
+            inputii.setAttributeNode(identifiant2)
+
+            let br2=document.createElement("br");
+
+            fieldsetDinamico.appendChild(inputii)
+            fieldsetDinamico.appendChild(br2)
+        }
+
+        fieldsetDinamico.appendChild(leyenda)
+
+        let f2ele = document.getElementById("f2")
+        f2ele.appendChild(fieldsetDinamico)
+        
     }
 
-
-
-
-
-
-
-
-
-
+    enviarPeticionAsincrona();
 })
