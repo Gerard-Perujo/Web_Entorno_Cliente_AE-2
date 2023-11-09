@@ -2,7 +2,7 @@ window.addEventListener("load", function(){
     //--------------------------------------------------Requerimiento 1----------------------------------------------------------------
     
     //Se declaran las constantes  de la url y el json con los datos que serán llamadas en el xmlHttp.open.
-    //La url destino fina absoluta sería: http://127.0.0.1:5500/Maria_Isabel/pizza.json
+    //La url destino final absoluta sería: http://127.0.0.1:5500/Maria_Isabel/pizza.json
     const URL_DESTINO = "http://127.0.0.1:5500/Maria_Isabel/"
     const RECURSO = "pizza.json" 
 
@@ -42,7 +42,13 @@ window.addEventListener("load", function(){
         let arrayTamaños = objetoJson.PIZZA.TAMAÑOS;
         let arrayIngredientes = objetoJson.PIZZA.INGREDIENTES;
 
-        //Ahora se crea la estructura del DOM dinámica
+        /*Se limpia el contenido previo del div con id 'field' para la función de refrescar.
+        Una variable recoge el contenido del div 'field', y dicho contenido se elimina poniéndolo en vacío.*/
+        let fields = document.getElementById("field");
+        fields.innerHTML = '';
+
+
+        //Ahora se crea la estructura del DOM dinámica.
         //Los elementos que no son ni radio button ni checkbox se crean fuera de los for ya que solo se hace una vez.
         //Se crea un fieldset, la legend y su texto, por lo que luego se hace el appendChild.
         let fieldsetDinamico=document.createElement("fieldset");
@@ -138,34 +144,29 @@ window.addEventListener("load", function(){
         //Al fieldset se le añade la legend.
         fieldsetDinamico.appendChild(leyenda)
 
-        /*
-        //Como en el HTML se ha creado un fielset con id 'f2', este se recoge en una variable, y es a esta a la que 
-        //se le añade lo que hemos denominado 'fieldsetDinámico.
-        let f2ele = document.getElementById("f2")
-        f2ele.appendChild(fieldsetDinamico)
-        */
-
        //Se crea una variable que haga referencia al div creado en el HTML, para añadir ahí todo el fielset.
-       let fields =document.getElementById("field")
+       //let fields =document.getElementById("field")
        fields.appendChild(fieldsetDinamico)
     }
 
-    enviarPeticionAsincrona();
+    enviarPeticionAsincrona()
 
 
 
     //-------------------REFRESCAR
     /* Se vuelve a realizar el proceso anterior sin necesidad de crear los elementos, ya que estos están dentro de la función
-       procesarRespuesta, que ya ha sido declarada. Posteriormente, se recupera el elemento botón mediante su id,
-       de tal manera que al pulsar dicho botón se recargue la página por completo, y si ha habido algún error se evita el 
-       envío al servidor*/
+       procesarRespuesta, que ya ha sido declarada. Las líneas de código que cambien serán comentadas*/
+
     function refrescar(){
+        alert("Dentro de función refrescar")
         let xmlHttp = new XMLHttpRequest()
 
         xmlHttp.onreadystatechange = function (){
             if (this.readyState==4){
                 if(this.status==200){
-                    procesarRespuesta(this.responseText)
+                    // Antes de procesar la respuesta, limpiamos el contenido existente.
+                    document.getElementById("field").innerHTML = '';
+                    procesarRespuesta(this.responseText);
                 }else{
                     alert("El status NO es 200 OK")
                 }
@@ -176,47 +177,103 @@ window.addEventListener("load", function(){
         xmlHttp.send(null)
     }
 
-    document.getElementById("refrescar").onclick = function (e) {
-        if (!refrescar()) {
-            e.preventDefault();
-        }
-    };
+    let actualizar = document.getElementById("refrescar")
+    actualizar.addEventListener("click", refrescar);
 
+    /*
+    //Se crea una variable en la cual se almacena el estado del formulario actual
+    let formularioActual = null;
+
+    function refrescar(){
+        alert("Dentro de función refrescar")
+        let xmlHttp = new XMLHttpRequest()
+
+        xmlHttp.onreadystatechange = function (){
+            if (this.readyState==4){
+                if(this.status==200){
+                    /*La respuesta del servidor tras estar todo ok, que llega como String debido al responseText, 
+                    se almacena en una variable. this referencia a xmlHttp */
+                    //let respuestaServidor=this.responseText
+                    /*El String de dicha respuesta se parsea para convertirlo a js. La variable hace referencia al JSON que 
+                    llega ahora*/
+                    //let nuevoFormulario= JSON.parse(respuestaServidor)
+                    /* Hay que comparar los datos del JSON para saber si ha habido cambios. 
+                    Se realizan stringify para convertir los JSON en cadena y así compararlos más efectivamente*/
+                    //if (JSON.stringify(nuevoFormulario) !== JSON.stringify(formularioActual)) {
+                        /*Si el nuevo JSON que llega es distinto del JSON previo, 
+                        solo entonces el formulario pasa a tener los nuevos valores y se actualiza la respuesta.*/
+                   //     formularioActual=nuevoFormulario
+                    //    procesarRespuesta(respuestaServidor)
+                /*}else{
+                    alert("El status NO es 200 OK")
+                }
+            }
+        }
+
+        xmlHttp.open('GET', URL_DESTINO + RECURSO, true)
+        xmlHttp.send(null)
+        }
+    }
+
+    /*Posteriormente, se recupera el elemento botón mediante su id  al pulsar dicho botón. No se recargará la página 
+    al completo, sino solo lo que haya cambiado. */
+    /*
+    document.getElementById("refrescar").onclick = function (e) {
+         e.preventDefault()
+         refrescar()     
+    }*/
+/*
+    let actualizar = document.getElementById("refrescar")
+    actualizar.addEventListener("click", refrescar);
+*/
 
     //--------------------------------------------------Requerimiento 2----------------------------------------------------------------
-    function total(){       
-        //Inicializamos el acumulador del precio del tamaño y de los ingredientes.
-        let resultatTaille = 0
-        let resultatIngredients = 0
-        //Se va a realizar un for para recorrer todos los tamaños independientemente del número de elementos que haya en el JSON.
-        for(let i=0; i<PIZZA.TAMAÑOS.length; i++){
-            //Si se ha seleccionado un tamaño, entonces el precio se acumula y se para el recorrido del for. 
-            if(TAMAÑO[i].checked){
-                //Como el precio viene como String se debe parsear a entero.
-                resultatTaille += parseInt(PIZZA.TAMAÑOS[i].PRECIO);
+    //Se crea la función total, por la cual se obtiene el precio final del pedido.
+    function total(){   
+        //Se inicializan las variables acumuladoras.
+        let resultatTaille = 0;
+        let resultatIngredients = 0;
+        
+        // Recorrer todos los tamaños
+        //Se declara una variable que contiene todos los elementos cuyo name asignado ha sido 'size', es decir, los radio button.
+        let tamaños = document.getElementsByName('size');
+        //Se recorre un for del tamaño de toda la colección de tamaños asignados a la variable tamaño.
+        for(let i = 0; i < tamaños.length; i++){
+            //Si un tamaño es seleccionado, el valor del mismo, obtenido mediante el atributo value, se acumula.
+            //Como solamente se puede escoger un tamaño de pizza, en el momento que el for encuentre un checked para el recorrido.
+            if(tamaños[i].checked){
+                resultatTaille += parseInt(tamaños[i].value);
                 break;
             }
         }
-
-        //Ahora se sigue la misma lógica para los checkbox 
-        for (let i=0; i<PIZZA.INGREDIENTES.length; i++){
-            if(INGREDIENTE[i].checked){
-                resultatIngredients += parseInt(PIZZA.INGREDIENTES[i].PRECIO);
-                //Como se pueden seleccionar varios ingredientes, en esta ocasión se incluye un continue para recorra todos los INGREDIENTES.
-                continue;
+    
+        // Recorrer todos los ingredientes; lógica muy similar al caso anterior
+        //Se declara una variable que contiene todos los elementos cuyo name asignado ha sido 'ingredientes', es decir, los checkbox.
+        let ingredientes = document.getElementsByName('ingredientes');
+        //Se recorre un for del tamaño de toda la colección de ingredientes asignados a la variable ingredientes.
+        for (let i = 0; i < ingredientes.length; i++){
+            //Si un ingrediente es seleccionado, el valor del mismo, obtenido mediante el atributo value, se acumula.
+            //Como se pueden escoger de 1 a n ingredientes, no hay que parar el recorrido del for y, por tanto, se omite el 'break'.
+            if(ingredientes[i].checked){
+                resultatIngredients += parseInt(ingredientes[i].value);
             }
         }
-        let resultatFinal = 0;
-        resultatFinal = resultatTaille + resultatIngredients;
+        
+        //Se crea una variable que almacena la suma de los acumuladores de precios. Se recoge dicha suma.
+        let resultatFinal = resultatTaille + resultatIngredients;
+        return resultatFinal;
     }
-
-    /*Al botón de procesar pedido (cuyo id es "enviar") cuando se le hace click se llamará a la función total
-      para que muestre el precio final y se envíe el formulario. Para evitar que se envíe el formulario con algún error,
-      como puede ser que no hayan escogido el tamaño y/o al menos un ingrediente, se incluye el preventDefautl.
-    */
+    
+    //Al elemento HTML, cuyo id es 'enviar', en este caso el botón, se le añade el evento onclick, de tal manera que al ser
+    //pulsado, la función se ejecuta. Se previene el comportamiento por defecto del evento.
     document.getElementById("enviar").onclick = function (e) {
-        if (!total()) {
-            e.preventDefault();
-        }
-    };
+        e.preventDefault(); 
+        //La nueva variable almacena el valor que retorna la función total()
+        let precioTotal = total(); 
+        //Finalmente, al elemento del HTML cuyo id es 'resultadoPrecio'(la caja de texto) se le incluye como valor el contenido
+        //de la variable que almacena el retorno de la función total().
+        document.getElementById("resultadoPrecio").value = precioTotal + " €"; 
+    }   
 })
+
+

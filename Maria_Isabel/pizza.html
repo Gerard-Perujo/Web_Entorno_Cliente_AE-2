@@ -30,31 +30,18 @@
         </fieldset>
         
         </br>
-        <!--
-        <fieldset>
-            <legend>Diseñe su propia pizza:</legend>
-            <label for="size">Tamaño de la pizza:</label>
-            </br>
-            <input type="radio" name="size" value="5" id="small"/> Pequeña<br/>
-            <input type="radio" name="size" value="10" id="medium"/> Mediana<br/>
-            <input type="radio" name="size" value="15" id="large"/> Grande
-        
-            <p>*Precios: 5€ tamaño pequeño, 10€ tamaño mediano y 15€ tamaño grande.</p>
-            <p> **Masa y base de queso incluidas en el precio.</p>
-            </br>
-            <label for="ingredientes">Escoja los ingredientes:</label> 
-            </br>
-            <input type="checkbox" name="ingredientes" value="1" id="sausage"/>Salchicha bávara<br/>
-            <input type="checkbox" name="ingredientes" value="1" id="meat"/>Carne picada<br/>
-            <input type="checkbox" name="ingredientes" value="1" id="honey"/>Miel y mostaza<br/>
-            <input type="checkbox" name="ingredientes" value="1" id="ham"/>Jamón serrano
-            <p>*Cada ingrediente seleccionado cuesta 1€ extra.</p>
-        </fieldset> 
-        -->
-        <!--<fieldset id="f2"></fieldset>-->
+        <!--Tomando como referencia el HTML de la actividad anterior, hasta ahora el código permanece intacto.
+        A continuación, se va a crear un div que será el contenedor del fieldset creado en JS.
+        Posteriormente, se crea un botón para procesar pedido, que a su vez contendrá un evento de JS al ser pulsado.
+        El resultado de dicho evento nos muestra la suma total del pedido, cuyo montante se muestra en la caja de solo lectura.
+        Finalmente, se crea el botón de refrescar para cumplir con el cometido definido en el JS.-->
         <div id="field" class="field"></div>
         </br>
         <input class="button" type="button" value="¡Procesar pedido!" id="enviar"/>
+        </br>
+        </br>
+        <label for="resultadoPrecio"></label>
+        <input type="text" id="resultadoPrecio" class="resultadoPrecio" placeholder="Precio final del pedido" readonly>
         </br>
         </br>
         <input class="refrescar" type="button" value="Refrescar" id="refrescar"/>      

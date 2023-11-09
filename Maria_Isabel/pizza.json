@@ -33,8 +33,14 @@
             {
             "INGREDIENTE" : "Jamón serrano",
             "PRECIO" : "1"
-            }           
+            },
+            {
+            "INGREDIENTE" : "Jamón york",
+            "PRECIO" : "10"
+            }
+            
         ]
-
+        
     }
+    
 }

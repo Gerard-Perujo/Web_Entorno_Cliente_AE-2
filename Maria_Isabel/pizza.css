@@ -52,3 +52,9 @@ p{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+/*Se centra esta caja respecto a los otros botones*/
+.resultadoPrecio{
+    margin-left: 9%;
+    text-align: center;
+}
+
