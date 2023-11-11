@@ -3,7 +3,7 @@
  */
 window.onload = function(){
     
-    enviarPeticionAsincrona();
+    enviarPeticionAsincrona()
 
     /**
      * Para evitar que la funcion cargarCalcular se ejecute antes de tiempo hacemos un preventDefault
@@ -20,7 +20,7 @@ window.onload = function(){
 
 
   
-const url_destino = "http://localhost:5501/Web_Entorno_Cliente_AE-2/Gerard_Perujo/"//ruta donde se encuentra el archivo json que simula una BBDD
+const url_destino = "http://localhost:5501/Actividades/Web_Entorno_Cliente_AE-2/Gerard_Perujo/"///ruta donde se encuentra el archivo json que simula una BBDD
 const recurso = "precios.json"// el archivo json que contiene todos los datos
 
 /**
@@ -35,7 +35,7 @@ function enviarPeticionAsincrona(){
             if (this.status == 200){
                 procesarRespuesta(this.responseText)
             }else{
-                alert("Error")
+                alert("Error No se encuentra el archivo")
             }
         }
     }

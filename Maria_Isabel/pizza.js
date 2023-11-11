@@ -3,7 +3,7 @@ window.addEventListener("load", function(){
     
     //Se declaran las constantes  de la url y el json con los datos que serán llamadas en el xmlHttp.open.
     //La url destino final absoluta sería: http://127.0.0.1:5500/Maria_Isabel/pizza.json
-    const URL_DESTINO = "http://127.0.0.1:5500/Maria_Isabel/"
+    const URL_DESTINO = "http://127.0.0.1:5501/Actividades/Web_Entorno_Cliente_AE-2/Maria_Isabel/"
     const RECURSO = "pizza.json" 
 
     //Se crea la función de enviar la petición.
