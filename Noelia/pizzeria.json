@@ -1,0 +1,61 @@
+{
+    "PIZZERIA": {
+        "TAMAÑOS": [  
+            {
+                "nombre": "XXS", 
+                "precio": 5
+            },
+            {
+                "nombre": "Pequeña", 
+                "precio": 10
+            },
+            {
+                "nombre": "Mediana", 
+                "precio": 15
+            },
+            {
+                "nombre": "Grande", 
+                "precio": 20
+            },
+            {
+                "nombre": "XXL", 
+                "precio": 25
+            },
+            {
+                "nombre": "Limusina", 
+                "precio": 35
+            }
+
+        ], 
+        "INGREDIENTES": [
+            {
+                "topping": "piña", 
+                "precio": 1
+            },
+            {
+                "topping": "queso", 
+                "precio": 1
+            },
+            {
+                "topping": "aceitunas", 
+                "precio": 1
+            },
+            {
+                "topping": "bacon", 
+                "precio": 1
+            },
+            {
+                "topping": "carne picada", 
+                "precio": 1
+            },
+            {
+                "topping": "atún", 
+                "precio": 1
+            }
+
+        ]
+    }
+}
+
+
+

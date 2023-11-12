@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AE_2-AJAX-DWE_Cliente</title>
+        
+    <!--Se importa el fichero JS y CSS al fichero HTML-->
+    <script type="text/javascript" src="pizzeria.js"></script>
+    <link rel="stylesheet" type="text/css" href="pizzeria.css"> 
+    
+</head>
+<body>
+    <form id="formulario" name="formulario" action="get"> <!--method="get"-->
+        <fieldset>
+            <legend>Datos a rellenar:</legend>
+            <label for="nombre">Nombre:</label>
+            <br/>
+            <input id="nombre" type="text" name="nombre" value=""/>
+            <br/>
+            <br/>
+            <label for="direccion">Dirección: </label>
+            <br/>
+            <input id="direccion" type="text" name="direccion" value=""/>
+            <br/>
+            <br/>
+            <label for="telefono">Teléfono: </label>
+            <br/>
+            <input id="telefono" type="number" name="telefono" value="" /> 
+            <br/>
+            <br/>
+            <label for="email">Email: </label>
+            <br/>
+            <input id="email" type="email" name="email" value=""/> 
+            <br/>
+            <br/>
+            <br/>
+            <!--Los tamaños de pizza se cargarán dinámicamente con JavaScript. 
+                El contenido del select se realiza mediante el DOM
+            -->
+            <label for="tamañoPizza">🍕 Tamaño de la pizza: </label>
+            <br/>	
+            <div id="divTamaño"></div>
+            <br/>
+            <br/>
+            <!--Los ingredientes de la pizza se cargarán dinámicamente con JavaScript
+                El contenido del select se realiza mediante el DOM
+            -->
+            <label for="ingredientesPizza">🍕 Ingredientes pizza: </label>
+            <br/>
+            <div id="divIngredientes" ></div>	
+            <br/>
+            <br/>	
+            <!-- Botón para refrescar los datos -->
+            <input id="botonRefrescar" type="button" value="Refrescar">
+           
+            <!-- Botón para procesar el pedido -->
+            <input id="botonProcesar" type="button" value="Procesar pedido">
+            <br/>
+            <br/>
+            <!--Precio del pedido-->
+            <label for="precio">Precio total de tu pedido: </label>
+            <br/>
+            <input type="text" id="precioTotal" readonly="readonly"/>
+
+        </fieldset>
+    </form>
+</body>
+</html>
